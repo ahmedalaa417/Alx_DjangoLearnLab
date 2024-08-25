@@ -24,9 +24,10 @@ def list_books_in_library(library_name):
         print(f'Book Title: {book.title}')
 
 def retrieve_librarian_for_library(library_name):
-    # Use the specified query to get the librarian for the given library
-    librarian = Librarian.objects.get(library__name=library_name)
+    library = Library.objects.get(name=library_name)
+    librarian = library.librarian
     print(f'Librarian Name: {librarian.name}')
+
 
 if __name__ == "__main__":
     print("Books by Author 'J.K. Rowling':")
