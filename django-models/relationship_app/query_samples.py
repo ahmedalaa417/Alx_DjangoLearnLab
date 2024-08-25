@@ -8,8 +8,15 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django-models.settings')
 django.setup()
 
 def query_books_by_author(author_name):
+    # Get the author object
     author = Author.objects.get(name=author_name)
-    books = author.books.all()
+    
+    # Use filter to get books by author
+    books = Book.objects.filter(author=author)
+    
+    # Alternatively, you could use the reverse relation:
+    # books = author.books.all()  # Assuming the related name is 'books'
+    
     for book in books:
         print(f'Book Title: {book.title}')
 
