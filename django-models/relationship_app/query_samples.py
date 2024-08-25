@@ -14,9 +14,6 @@ def query_books_by_author(author_name):
     # Use filter to get books by author
     books = Book.objects.filter(author=author)
     
-    # Alternatively, you could use the reverse relation:
-    # books = author.books.all()  # Assuming the related name is 'books'
-    
     for book in books:
         print(f'Book Title: {book.title}')
 
@@ -27,8 +24,8 @@ def list_books_in_library(library_name):
         print(f'Book Title: {book.title}')
 
 def retrieve_librarian_for_library(library_name):
-    library = Library.objects.get(name=library_name)
-    librarian = library.librarian
+    # Use the specified query to get the librarian for the given library
+    librarian = Librarian.objects.get(library__name=library_name)
     print(f'Librarian Name: {librarian.name}')
 
 if __name__ == "__main__":
